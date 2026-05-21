@@ -1,0 +1,1318 @@
+<!-- public/index.html - ULTRA PREMIUM DESIGN -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="OmniVerse - The Most Powerful Deployment Platform on Earth. Deploy apps instantly, get indexed on Google, earn money, and dominate the web.">
+    <meta name="keywords" content="deploy app, free hosting, vps, cloud platform, ai deployment, google indexing">
+    <meta name="author" content="OmniVerse">
+    <meta property="og:title" content="OmniVerse - Ultimate Deployment Platform">
+    <meta property="og:description" content="Deploy any app instantly. Get indexed on Google. Dominate the web.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>OmniVerse | The Ultimate Deployment Platform</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(125deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at center, rgba(102,126,234,0.1) 0%, transparent 50%);
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Particle Canvas */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: 0.1s;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: 0.15s;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 50px;
+            background: rgba(10,10,10,0.95);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .logo i {
+            background: none;
+            -webkit-text-fill-color: #667eea;
+            margin-right: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(102,126,234,0.2);
+            border: 1px solid rgba(102,126,234,0.5);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge i {
+            color: #667eea;
+            margin-right: 8px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(102,126,234,0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(102,126,234,0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            margin-top: 10px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 50px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #fff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102,126,234,0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102,126,234,0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon i {
+            font-size: 30px;
+            color: #667eea;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+
+        /* Deploy Section */
+        .deploy-section {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .deploy-container {
+            background: rgba(255,255,255,0.03);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            background: rgba(102,126,234,0.3);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* Apps Grid */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .app-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 20px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102,126,234,0.3);
+        }
+
+        .app-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .app-url {
+            font-size: 12px;
+            color: #667eea;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0,255,0,0.2);
+            color: #00ff00;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            margin-left: 10px;
+        }
+
+        /* AI Chat */
+        .ai-chat {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 380px;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+            transition: 0.3s;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .ai-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2));
+            border-radius: 20px 20px 0 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-header i {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .ai-status {
+            font-size: 12px;
+            color: #00ff00;
+            margin-left: auto;
+        }
+
+        .ai-messages {
+            height: 350px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-content {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 13px;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .message.bot .message-content {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .ai-input {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            gap: 10px;
+        }
+
+        .ai-input input {
+            flex: 1;
+            margin: 0;
+        }
+
+        .ai-input button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Location Badge */
+        .location-badge {
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            z-index: 999;
+            border: 1px solid rgba(102,126,234,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0,0,0,0.5);
+            padding: 60px 50px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section a {
+            color: #a0a0a0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #a0a0a0;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .stats, .features, .deploy-section {
+                padding: 40px 20px;
+            }
+            .ai-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 20px;
+            }
+            .location-badge {
+                top: 70px;
+                right: 20px;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(102,126,234,0.3);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Alert */
+        .alert {
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            animation: slideIn 0.3s;
+        }
+
+        .alert-success {
+            background: rgba(0,255,0,0.1);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+
+        .alert-error {
+            background: rgba(255,0,0,0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="animated-bg"></div>
+<canvas id="particles"></canvas>
+
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="logo">
+        <i class="fas fa-globe"></i> OmniVerse
+    </div>
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#deploy">Deploy</a>
+        <a href="#apps">My Apps</a>
+        <a href="#pricing">Pricing</a>
+    </div>
+</nav>
+
+<!-- Location Badge -->
+<div class="location-badge" id="locationBadge">
+    <i class="fas fa-map-marker-alt"></i> <span id="locationText">Loading...</span>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div class="hero-badge" data-aos="fade-up">
+            <i class="fas fa-bolt"></i> POWERED BY AI · DEPLOY IN SECONDS
+        </div>
+        <h1 data-aos="fade-up" data-aos-delay="100">Deploy Anything.<br>Dominate Everywhere.</h1>
+        <p data-aos="fade-up" data-aos-delay="200">The most powerful deployment platform on Earth. Deploy any app, get indexed on Google, and reach millions worldwide. Zero configuration. Infinite possibilities.</p>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+            <button class="btn btn-primary" onclick="document.getElementById('deploy').scrollIntoView({behavior: 'smooth'})">
+                <i class="fas fa-rocket"></i> Deploy Now
+            </button>
+            <button class="btn btn-secondary" onclick="showDemo()">
+                <i class="fas fa-play"></i> Watch Demo
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<div class="stats" data-aos="fade-up">
+    <div class="stat-item">
+        <div class="stat-number" id="statDeployments">0</div>
+        <div class="stat-label">Total Deployments</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" id="statApps">0</div>
+        <div class="stat-label">Active Apps</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" id="statEarnings">$0</div>
+        <div class="stat-label">Total Earnings</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Uptime Guarantee</div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<section class="features" id="features">
+    <h2 class="section-title" data-aos="fade-up">Why Choose OmniVerse?</h2>
+    <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+            <h3>Lightning Fast</h3>
+            <p>Deploy your app in seconds with our optimized infrastructure. Global CDN ensures blazing fast loading times worldwide.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="fas fa-robot"></i></div>
+            <h3>AI-Powered</h3>
+            <p>Our AI automatically fixes code errors, optimizes performance, and even generates complete apps from descriptions.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="fab fa-google"></i></div>
+            <h3>Google Indexed</h3>
+            <p>Every app is automatically submitted to Google, Bing, and Yahoo. Get discovered by millions organically.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>Enterprise Security</h3>
+            <p>DDoS protection, SSL encryption, automatic backups, and 24/7 monitoring keep your apps safe.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Monetization Ready</h3>
+            <p>Earn money from your apps with built-in ad integration, premium features, and payment processing.</p>
+        </div>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+            <h3>Unlimited Scale</h3>
+            <p>No limits on traffic, storage, or bandwidth. Your apps can scale to millions of users effortlessly.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Deploy Section -->
+<section class="deploy-section" id="deploy">
+    <div class="deploy-container" data-aos="fade-up">
+        <h2 style="text-align: center; margin-bottom: 30px;">Deploy Your App</h2>
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('code')"><i class="fas fa-code"></i> Paste Code</div>
+            <div class="tab" onclick="switchTab('github')"><i class="fab fa-github"></i> GitHub</div>
+            <div class="tab" onclick="switchTab('zip')"><i class="fas fa-file-archive"></i> Upload ZIP</div>
+            <div class="tab" onclick="switchTab('ai')"><i class="fas fa-magic"></i> AI Generate</div>
+        </div>
+
+        <div id="tab-code" class="tab-content active">
+            <textarea id="codeInput" rows="8" placeholder="// Paste your Node.js/Express code here&#10;&#10;const express = require('express');&#10;const app = express();&#10;&#10;app.get('/', (req, res) => {&#10;    res.send('Hello World!');&#10;});&#10;&#10;app.listen(process.env.PORT || 3000);"></textarea>
+            <input type="text" id="appName" placeholder="App Name (e.g., MyAwesomeApp)">
+            <input type="text" id="appDesc" placeholder="Short description (helps with SEO)">
+            <button class="btn btn-primary" onclick="deployCode()" style="width: 100%;">
+                <i class="fas fa-rocket"></i> Deploy Now - Get Live URL
+            </button>
+            <div id="deployResult"></div>
+        </div>
+
+        <div id="tab-github" class="tab-content">
+            <input type="text" id="githubUrl" placeholder="https://github.com/username/repository">
+            <button class="btn btn-primary" onclick="deployGitHub()" style="width: 100%;">
+                <i class="fab fa-github"></i> Deploy from GitHub
+            </button>
+            <div id="githubResult"></div>
+        </div>
+
+        <div id="tab-zip" class="tab-content">
+            <input type="file" id="zipFile" accept=".zip">
+            <input type="text" id="zipAppName" placeholder="App Name">
+            <button class="btn btn-primary" onclick="deployZip()" style="width: 100%;">
+                <i class="fas fa-upload"></i> Upload & Deploy
+            </button>
+            <div id="zipResult"></div>
+        </div>
+
+        <div id="tab-ai" class="tab-content">
+            <textarea id="aiPrompt" rows="4" placeholder="Describe the app you want...&#10;&#10;Example: 'Create an e-commerce store with products, cart, and checkout'"></textarea>
+            <button class="btn btn-secondary" onclick="generateWithAI()" style="width: 100%; margin-bottom: 15px;">
+                <i class="fas fa-magic"></i> Generate App with AI
+            </button>
+            <div id="aiGeneratedCode" style="display: none;">
+                <textarea id="generatedCode" rows="10" readonly style="font-family: monospace;"></textarea>
+                <button class="btn btn-primary" onclick="deployGenerated()" style="width: 100%;">
+                    <i class="fas fa-rocket"></i> Deploy This App
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Apps Section -->
+<section class="deploy-section" id="apps">
+    <div class="deploy-container" data-aos="fade-up">
+        <h2 style="text-align: center; margin-bottom: 20px;">Your Deployed Apps</h2>
+        <input type="text" id="searchApps" placeholder="🔍 Search your apps..." onkeyup="searchApps()" style="margin-bottom: 20px;">
+        <div id="appsList" class="apps-grid">
+            <div class="loader"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4><i class="fas fa-globe"></i> OmniVerse</h4>
+            <p>The ultimate deployment platform for developers and creators.</p>
+        </div>
+        <div class="footer-section">
+            <h4>Product</h4>
+            <a href="#deploy">Deploy</a>
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#">Documentation</a>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="#">API Reference</a>
+            <a href="#">Community</a>
+            <a href="#">Blog</a>
+            <a href="#">Support</a>
+        </div>
+        <div class="footer-section">
+            <h4>Legal</h4>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Security</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 OmniVerse. All rights reserved. Deploy anything, dominate everywhere.</p>
+    </div>
+</footer>
+
+<!-- AI Chat -->
+<div class="ai-chat" id="aiChat">
+    <div class="ai-header" onclick="toggleChat()">
+        <i class="fas fa-robot"></i>
+        <strong>OmniAI Assistant</strong>
+        <span class="ai-status"><i class="fas fa-circle"></i> Online</span>
+    </div>
+    <div id="chatMessages" class="ai-messages">
+        <div class="message bot">
+            <div class="message-content">👋 Hello! I'm OmniAI, your personal deployment assistant. Ask me anything about deploying your app, fixing code, or generating new apps!</div>
+        </div>
+    </div>
+    <div class="ai-input">
+        <input type="text" id="chatInput" placeholder="Ask me anything..." onkeypress="if(event.key==='Enter') askAI()">
+        <button onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // Socket connection
+    const socket = io();
+
+    // Location updates
+    socket.on('locationUpdate', (location) => {
+        document.getElementById('locationText').innerHTML = `${location.flag} ${location.country} - ${location.city}`;
+    });
+
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursorFollower.style.left = e.clientX + 'px';
+        cursorFollower.style.top = e.clientY + 'px';
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Particle system
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+            this.opacity = Math.random() * 0.5;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+        }
+        
+        draw() {
+            ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
+            ctx.fillRect(this.x, this.y, this.size, this.size);
+        }
+    }
+    
+    const particles = [];
+    for (let i = 0; i < 100; i++) {
+        particles.push(new Particle());
+    }
+    
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    
+    animateParticles();
+
+    // Tab switching
+    function switchTab(tab) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById(`tab-${tab}`).classList.add('active');
+    }
+
+    // Deploy functions
+    async function deployCode() {
+        const code = document.getElementById('codeInput').value;
+        const appName = document.getElementById('appName').value;
+        const description = document.getElementById('appDesc').value;
+        
+        if (!code) {
+            showAlert('deployResult', 'Please paste your code first!', 'error');
+            return;
+        }
+        
+        showAlert('deployResult', '<div class="loader"></div><p>🚀 Deploying and submitting to search engines...</p>', 'loading');
+        
+        try {
+            const response = await fetch('/api/deploy', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, appName, description })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                showAlert('deployResult', `
+                    <i class="fas fa-check-circle"></i> <strong>DEPLOYMENT SUCCESSFUL!</strong><br>
+                    🔗 Your app is LIVE at: <a href="${result.url}" target="_blank" style="color: #667eea">${result.url}</a><br>
+                    🌐 Accessible worldwide!<br>
+                    🔍 Submitted to Google, Bing, Yahoo!<br>
+                    📱 Share the link - it will appear in search results within 24-48 hours!
+                    ${result.issues ? `<br>⚠️ Fixed issues: ${result.issues.join(', ')}` : ''}
+                `, 'success');
+                document.getElementById('codeInput').value = '';
+                loadApps();
+            } else {
+                showAlert('deployResult', `❌ Deployment failed: ${result.error}`, 'error');
+            }
+        } catch (error) {
+            showAlert('deployResult', `❌ Error: ${error.message}`, 'error');
+        }
+    }
+
+    async function deployGitHub() {
+        const repoUrl = document.getElementById('githubUrl').value;
+        
+        if (!repoUrl) {
+            showAlert('githubResult', 'Please enter GitHub repository URL!', 'error');
+            return;
+        }
+        
+        showAlert('githubResult', '<div class="loader"></div><p>🚀 Cloning and deploying from GitHub...</p>', 'loading');
+        
+        const response = await fetch('/api/deploy/github', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ repoUrl })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showAlert('githubResult', `✅ Deployed! <a href="${result.url}" target="_blank">${result.url}</a>`, 'success');
+            loadApps();
+        } else {
+            showAlert('githubResult', `❌ ${result.error}`, 'error');
+        }
+    }
+
+    async function deployZip() {
+        const file = document.getElementById('zipFile').files[0];
+        const appName = document.getElementById('zipAppName').value;
+        
+        if (!file) {
+            showAlert('zipResult', 'Please select a ZIP file!', 'error');
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('appName', appName);
+        
+        showAlert('zipResult', '<div class="loader"></div><p>🚀 Extracting and deploying...</p>', 'loading');
+        
+        const response = await fetch('/api/deploy/zip', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            showAlert('zipResult', `✅ Deployed! <a href="${result.url}" target="_blank">${result.url}</a>`, 'success');
+            loadApps();
+        } else {
+            showAlert('zipResult', `❌ ${result.error}`, 'error');
+        }
+    }
+
+    async function generateWithAI() {
+        const prompt = document.getElementById('aiPrompt').value;
+        
+        if (!prompt) {
+            alert('Please describe what app you want!');
+            return;
+        }
+        
+        const response = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: `generate ${prompt}` })
+        });
+        
+        const result = await response.json();
+        
+        if (result.type === 'generated_code') {
+            document.getElementById('generatedCode').value = result.code;
+            document.getElementById('aiGeneratedCode').style.display = 'block';
+        }
+    }
+
+    async function deployGenerated() {
+        const code = document.getElementById('generatedCode').value;
+        const appName = document.getElementById('aiPrompt').value.slice(0, 30);
+        
+        const response = await fetch('/api/deploy', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, appName })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert(`✅ App deployed! ${result.url}`);
+            loadApps();
+        } else {
+            alert('Deployment failed: ' + result.error);
+        }
+    }
+
+    function showAlert(containerId, message, type) {
+        const container = document.getElementById(containerId);
+        const alertClass = type === 'success' ? 'alert-success' : (type === 'error' ? 'alert-error' : '');
+        container.innerHTML = `<div class="alert ${alertClass}">${message}</div>`;
+        if (type !== 'loading') {
+            setTimeout(() => {
+                if (container.innerHTML.includes(message)) {
+                    container.innerHTML = '';
+                }
+            }, 10000);
+        }
+    }
+
+    async function loadApps() {
+        try {
+            const response = await fetch('/api/apps');
+            const data = await response.json();
+            
+            document.getElementById('statDeployments').innerHTML = data.total || 0;
+            document.getElementById('statApps').innerHTML = data.apps?.length || 0;
+            document.getElementById('statEarnings').innerHTML = `$${(data.earnings || 0).toFixed(2)}`;
+            
+            const appsList = document.getElementById('appsList');
+            
+            if (!data.apps || data.apps.length === 0) {
+                appsList.innerHTML = '<p style="text-align: center; color: #a0a0a0;">No apps deployed yet. Deploy your first app above!</p>';
+            } else {
+                appsList.innerHTML = data.apps.map(app => `
+                    <div class="app-card">
+                        <div class="app-name">
+                            ${app.name} <span class="badge">LIVE</span>
+                        </div>
+                        <div class="app-url">
+                            <i class="fas fa-link"></i> <a href="${app.url}" target="_blank">${app.url}</a>
+                        </div>
+                        <div style="font-size: 12px; color: #a0a0a0; margin: 10px 0;">${app.description || 'No description'}</div>
+                        <div style="font-size: 11px; color: #666;">
+                            <i class="far fa-calendar"></i> ${new Date(app.createdAt).toLocaleString()}
+                        </div>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error loading apps:', error);
+        }
+    }
+
+    async function searchApps() {
+        const query = document.getElementById('searchApps').value;
+        
+        if (query.length < 2) {
+            loadApps();
+            return;
+        }
+        
+        const response = await fetch('/api/search?q=' + encodeURIComponent(query));
+        const data = await response.json();
+        
+        const appsList = document.getElementById('appsList');
+        appsList.innerHTML = data.apps.map(app => `
+            <div class="app-card">
+                <div class="app-name">${app.name} <span class="badge">LIVE</span></div>
+                <div class="app-url"><i class="fas fa-link"></i> <a href="${app.url}" target="_blank">${app.url}</a></div>
+                <div style="font-size: 12px; color: #a0a0a0;">${app.description || 'No description'}</div>
+            </div>
+        `).join('');
+    }
+
+    async function askAI() {
+        const input = document.getElementById('chatInput');
+        const message = input.value;
+        
+        if (!message) return;
+        
+        const messagesDiv = document.getElementById('chatMessages');
+        messagesDiv.innerHTML += `
+            <div class="message user">
+                <div class="message-content">${escapeHtml(message)}</div>
+            </div>
+        `;
+        input.value = '';
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        
+        const response = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+        
+        const result = await response.json();
+        messagesDiv.innerHTML += `
+            <div class="message bot">
+                <div class="message-content">${escapeHtml(result.message)}</div>
+            </div>
+        `;
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    let chatOpen = true;
+    function toggleChat() {
+        const messages = document.querySelector('#aiChat .ai-messages');
+        const input = document.querySelector('#aiChat .ai-input');
+        if (chatOpen) {
+            messages.style.display = 'none';
+            input.style.display = 'none';
+        } else {
+            messages.style.display = 'block';
+            input.style.display = 'flex';
+        }
+        chatOpen = !chatOpen;
+    }
+
+    function showDemo() {
+        alert('🚀 OmniVerse Demo\n\n1. Paste any Node.js code\n2. Click Deploy\n3. Get a live URL instantly\n4. Your app gets indexed on Google!\n\nTry it now!');
+    }
+
+    // Initial load
+    loadApps();
+    setInterval(loadApps, 30000);
+</script>
+</body>
+</html>
