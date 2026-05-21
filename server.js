@@ -873,16 +873,140 @@ app.post('/api/deploy', express.json(), async (req, res) => {
 });
 
 // Deploy from GitHub
-app.post('/api/deploy/github', express.json(), async (req, res) => {
-    const { repoUrl } = req.body;
+// ============ REPLACE THE ENTIRE deployFromGitHub FUNCTION ============
+
+async deployFromGitHub(repoUrl, appName = null) {
+    const deploymentId = uuidv4().slice(0, 8);
+    const finalName = appName || `github-${deploymentId}`;
+    const appDir = path.join(__dirname, 'deployed_apps', finalName);
     
-    if (!repoUrl) {
-        return res.status(400).json({ error: 'GitHub URL is required' });
+    console.log(`🚀 Deploying from GitHub: ${repoUrl}`);
+    
+    try {
+        // Extract repo info from URL
+        let repoPath = repoUrl.replace('https://github.com/', '').replace('.git', '');
+        const apiUrl = `https://api.github.com/repos/${repoPath}/contents`;
+        
+        // Fetch repository contents using GitHub API (no git command needed!)
+        const response = await axios.get(apiUrl, {
+            headers: { 'Accept': 'application/vnd.github.v3+json' }
+        });
+        
+        // Look for server.js or package.json
+        let serverCode = null;
+        let hasPackageJson = false;
+        
+        for (const file of response.data) {
+            if (file.name === 'server.js' || file.name === 'app.js' || file.name === 'index.js') {
+                const fileContent = await axios.get(file.download_url);
+                serverCode = fileContent.data;
+                console.log(`✅ Found ${file.name}`);
+            }
+            if (file.name === 'package.json') {
+                hasPackageJson = true;
+            }
+        }
+        
+        if (!serverCode) {
+            // Try to fetch from main branch
+            const mainBranchUrl = `https://raw.githubusercontent.com/${repoPath}/main/server.js`;
+            try {
+                const mainResponse = await axios.get(mainBranchUrl);
+                serverCode = mainResponse.data;
+            } catch (e) {
+                // Try master branch
+                const masterResponse = await axios.get(`https://raw.githubusercontent.com/${repoPath}/master/server.js`);
+                serverCode = masterResponse.data;
+            }
+        }
+        
+        if (!serverCode) {
+            throw new Error('No server.js or app.js found in the repository');
+        }
+        
+        // Create app directory
+        await fs.ensureDir(appDir);
+        await fs.ensureDir(path.join(appDir, 'public'));
+        
+        // Analyze and fix code
+        const { fixedCode, issues } = await ai.analyzeAndFix(serverCode);
+        
+        // Save the code
+        await fs.writeFile(path.join(appDir, 'server.js'), fixedCode);
+        
+        // Create package.json if not exists
+        if (!hasPackageJson) {
+            const packageJson = {
+                name: finalName,
+                version: "1.0.0",
+                description: `Deployed from ${repoUrl}`,
+                main: "server.js",
+                scripts: { start: "node server.js" },
+                dependencies: {
+                    "express": "^4.18.2",
+                    "cors": "^2.8.5"
+                }
+            };
+            await fs.writeFile(path.join(appDir, "package.json"), JSON.stringify(packageJson, null, 2));
+        }
+        
+        // Generate SEO HTML
+        const seoHtml = this.generateSEOHTML(finalName, `Deployed from ${repoUrl}`);
+        await fs.writeFile(path.join(appDir, "public", "index.html"), seoHtml);
+        
+        // Install dependencies
+        await this.installDependencies(appDir);
+        
+        // Start the app
+        const port = 3000 + deployedApps.size + 1;
+        const proc = this.startApp(appDir, port, finalName);
+        
+        // Generate domain
+        const domain = `${finalName}.omniverse.herokuapp.com`;
+        
+        // Submit to search engines
+        await searchSubmitter.submitAll(`https://${domain}`, finalName);
+        
+        // Save app info
+        const appInfo = {
+            id: deploymentId,
+            name: finalName,
+            domain: domain,
+            url: `https://${domain}`,
+            port: port,
+            description: `Deployed from GitHub: ${repoUrl}`,
+            createdAt: new Date().toISOString(),
+            issues: issues,
+            status: "running",
+            repoUrl: repoUrl
+        };
+        
+        deployedApps.set(finalName, appInfo);
+        db.saveApp(deploymentId, appInfo);
+        totalDeployments++;
+        db.incrementStat('deployments');
+        
+        console.log(`✅ GitHub app deployed: https://${domain}`);
+        
+        return {
+            success: true,
+            appId: deploymentId,
+            name: finalName,
+            url: `https://${domain}`,
+            domain: domain,
+            issues: issues,
+            message: `App deployed successfully from ${repoUrl}!`
+        };
+        
+    } catch (error) {
+        console.error(`GitHub deployment failed: ${error.message}`);
+        return {
+            success: false,
+            error: error.message,
+            suggestion: "Make sure your repository has a server.js file in the root directory"
+        };
     }
-    
-    const result = await deployEngine.deployFromGitHub(repoUrl);
-    res.json(result);
-});
+}
 
 // Deploy from ZIP
 app.post('/api/deploy/zip', upload.single('file'), async (req, res) => {
